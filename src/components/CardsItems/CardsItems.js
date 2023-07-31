@@ -8,24 +8,31 @@ export default class CardsItems extends Component {
     movieService = new MovieService();
 
     state = {
-        name: null,
-        realise: null,
-        overview: null
+        movies: []
     }
 
-    constructor() {
-        super();
-        this.updateMovie();
+    // state = {
+    //     poster: null,
+    //     name: null,
+    //     realise: null,
+    //     overview: null
+    // }
+
+    componentDidMount() {
+        // super();
+        this.updateMovies();
     }
 
-    updateMovie() {
+    updateMovies() {
         this.movieService
             .getMovie('drive')
             .then((results) => {
                 this.setState({
-                    name: results.original_title,
-                    realise: results.release_date,
-                    overview: results.overview
+                    // poster: results[0].poster_path,
+                    // name: results[0].original_title,
+                    // realise: results[0].release_date,
+                    // overview: results[0].overview
+                    movies: results
                 })
 
             })
@@ -34,18 +41,30 @@ export default class CardsItems extends Component {
 
     render() {
 
-        const { name, realise, overview } = this.state;
+        // const { poster, name, realise, overview } = this.state;
+        const { movies } = this.state;
+
+        // console.log('name ' + name)
 
         return (
-            <div className='item-contener'>
-                <img className='movie-poster'
-                    src="https://www.themoviedb.org/t/p/original/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg" />
+            <div>
+                {movies.map((movie) => (
+                    <div key={movie.id} className='item-contener'>
 
-                <div>
-                    <h5>{name}</h5>
-                    <p className='realise-date'>{realise}</p>
-                    <p className='overview'>{overview}</p>
-                </div>
+                        <img
+                            className='movie-poster'
+                            src={`https://www.themoviedb.org/t/p/original/${movie.poster_path}`}
+                            alt={movie.title}
+                        />
+
+                        <div>
+                            <h5>{movie.title}</h5>
+                            <p className='realise-date'>{movie.realise_date}</p>
+                            <p className='overview'>{movie.overview}</p>
+                        </div>
+
+                    </div>
+                ))}
 
             </div>
         )

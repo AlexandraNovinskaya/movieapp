@@ -17,6 +17,8 @@ export default class MovieService {
 
         const body = await response.json();
         const results = body.results;
+
+        console.log('Movie endpoint ' + results[0])
         return results;
     }
 

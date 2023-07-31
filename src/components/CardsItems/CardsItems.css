@@ -1,0 +1,14 @@
+.item-contener {
+    font: Inter UI;
+}
+
+.movie-poster {
+    height: 281px;
+    width: 183px;
+    top: -2px;
+
+}
+
+.item-contener {
+    display: flex;
+}

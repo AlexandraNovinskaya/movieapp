@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Spin } from 'antd'
 import './CardsItems.css'
 import MovieService from '../../services/movieDB-service';
 
@@ -8,7 +8,8 @@ export default class CardsItems extends Component {
     movieService = new MovieService();
 
     state = {
-        movies: []
+        movies: [],
+        loading: true
     }
 
     // state = {
@@ -32,7 +33,8 @@ export default class CardsItems extends Component {
                     // name: results[0].original_title,
                     // realise: results[0].release_date,
                     // overview: results[0].overview
-                    movies: results
+                    movies: results,
+                    loading: false
                 })
 
             })
@@ -42,12 +44,14 @@ export default class CardsItems extends Component {
     render() {
 
         // const { poster, name, realise, overview } = this.state;
-        const { movies } = this.state;
+        const { movies, loading } = this.state;
 
         // console.log('name ' + name)
-
+        if (loading) {
+            return <Spin />
+        }
         return (
-            <div>
+            <div className='movie-col'>
                 {movies.map((movie) => (
                     <div key={movie.id} className='item-contener'>
 
@@ -58,7 +62,7 @@ export default class CardsItems extends Component {
                         />
 
                         <div>
-                            <h5>{movie.title}</h5>
+                            <h5 className='mov-title'>{movie.title}</h5>
                             <p className='realise-date'>{movie.realise_date}</p>
                             <p className='overview'>{movie.overview}</p>
                         </div>

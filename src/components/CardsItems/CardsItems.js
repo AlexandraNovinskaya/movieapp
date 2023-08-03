@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Spin } from 'antd'
+// import { Spin } from 'antd';
+import Spinner from '../Spinner/Spinner';
 import './CardsItems.css'
 import MovieService from '../../services/movieDB-service';
 
@@ -7,10 +8,24 @@ export default class CardsItems extends Component {
 
     movieService = new MovieService();
 
-    state = {
-        movies: [],
-        loading: true
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true,
+            movies: [],
+            // totalMovies: 0,
+            // elementsPerPage: 6,
+            // searchTerm: '',
+            // moviesRated: [],
+            // totalMoviesRated: 0,
+            // counter : 0,
+            // moviesCurrent : [],
+        };
     }
+
+    // state = {
+    //     movies: []
+    // }
 
     // state = {
     //     poster: null,
@@ -33,8 +48,9 @@ export default class CardsItems extends Component {
                     // name: results[0].original_title,
                     // realise: results[0].release_date,
                     // overview: results[0].overview
-                    movies: results,
-                    loading: false
+                    loading: false,
+                    movies: results
+
                 })
 
             })
@@ -44,15 +60,16 @@ export default class CardsItems extends Component {
     render() {
 
         // const { poster, name, realise, overview } = this.state;
-        const { movies, loading } = this.state;
+        const { loading, movies } = this.state;
 
-        // console.log('name ' + name)
-        if (loading) {
-            return <Spin />
-        }
+        console.log("loading" + loading)
+        console.log("movies" + movies)
+
         return (
             <div className='movie-col'>
-                {movies.map((movie) => (
+
+
+                {loading ? <Spinner /> : movies.map((movie) => (
                     <div key={movie.id} className='item-contener'>
 
                         <img
@@ -63,7 +80,7 @@ export default class CardsItems extends Component {
 
                         <div>
                             <h5 className='mov-title'>{movie.title}</h5>
-                            <p className='realise-date'>{movie.realise_date}</p>
+                            <p className='release_date'>{movie.release_date}</p>
                             <p className='overview'>{movie.overview}</p>
                         </div>
 

@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Space, Spin } from 'antd';
 
 import CardsItems from '../CardsItems/CardsItems';
-import Search from '../Search/Search';
-const App = () => {
 
-    return (
-        <div>
-            <h1>Movie List</h1>
-            <Search />
-            <CardsItems />
-        </div>
 
-    );
-};
+export default class App extends Component {
 
-export default App;
+    render() {
+        console.log("Yo")
+        return (
+            <div>
+                <h1>Movie List</h1>
+                {/* <Search /> */}
+                <CardsItems />
+                {/* <Space size="middle">
+                    <Spin size="small" />
+                    <Spin />
+                    <Spin size="large" />
+                </Space> */}
+
+            </div>
+        )
+    }
+}

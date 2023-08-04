@@ -1,17 +1,12 @@
-import React, { Component } from "react";
-import { Alert, Spin } from 'antd';
+import React from 'react';
+import { Spin } from 'antd';
 
+const Spinner = () => {
+    return (
+        <div className="spinner-container">
+            <Spin tip="Loading..." size="large" />
+        </div>
+    );
+};
 
-export default class Spinner extends Component {
-    render() {
-        return (
-            <Spin tip="Loading..." size="large">
-                <Alert
-                    message="Alert message title"
-                    description="Further details about the context of this alert."
-                    type="info"
-                />
-            </Spin>
-        )
-    }
-}
+export default Spinner;

@@ -27,7 +27,7 @@ export default function RatedTab() {
             {ratedMovies.map(movie => (
                 <div key={movie.id}>
                     <h3>{movie.title}</h3>
-                    <p>Ваша оценка: {movie.rating}</p>
+                    <p>Your Rating: {movie.rating}</p>
                 </div>
             ))}
         </div>

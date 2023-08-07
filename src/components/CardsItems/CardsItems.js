@@ -23,12 +23,14 @@ function CardsItems(props) {
 
     const movieService = new MovieService();
 
+    //форматирование даты 
     const formatDate = (inputDate) => {
         const date = new Date(inputDate);
         const option = { year: 'numeric', month: 'long', day: 'numeric' };
         return date.toLocaleDateString('en-US', option);
     }
 
+    //сокращение текста 
     const lessText = (text, maxLength) => {
         if (text.length > maxLength) {
             return text.substring(0, maxLength - 3) + '...';
@@ -36,6 +38,7 @@ function CardsItems(props) {
         return text;
     }
 
+    //выставление цвета 
     const getRatingColor = (rating) => {
         if (rating >= 0 && rating < 3) {
             return '#E90000';

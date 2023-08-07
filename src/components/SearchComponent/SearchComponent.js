@@ -28,9 +28,10 @@ class SearchComponent extends Component {
     render() {
         return (
             <Search
-                placeholder="Search movies..."
-                allowClear
+                placeholder="Type to search..."
+                // allowClear
                 onSearch={this.handleSearch}
+                prefix={null}
                 onChange={(e) => this.handleSearch(e.target.value)}
                 value={this.state.searchQuery}
                 style={{ marginBottom: 16 }}
